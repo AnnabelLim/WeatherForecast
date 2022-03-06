@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Weather Forecast</string>
+    <string name="image">image</string>
+    <string name="temp">"%s ℉"</string>
+    <string name="wind">"%s miles/hour"</string>
+    <string name="goback">Go Back</string>
+</resources>

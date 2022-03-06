@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 
 class MainActivityVM(application: Application)  : AndroidViewModel(application) {
 
+    // save the results in LiveData so Activity can observe it
    private var mForecastData = MutableLiveData<List<ForecastTable>>()
    val forecastData: LiveData<List<ForecastTable>>
        get() = mForecastData

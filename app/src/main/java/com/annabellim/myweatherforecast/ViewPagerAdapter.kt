@@ -10,11 +10,12 @@ import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.annabellim.myweatherforecast.model.ForecastTable
 
+// The Adapter expects to receive data that is an array of PagerModels
 class PagerModel(
     var image_drawable: Int,
     var forecastTable: ForecastTable
 )
-
+// The ViewPagerAdapter puts the data in the View Pager
 class ViewPagerAdapter(context: Context, private val pagerModelList: ArrayList<PagerModel>) : PagerAdapter() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -27,8 +28,10 @@ class ViewPagerAdapter(context: Context, private val pagerModelList: ArrayList<P
         return pagerModelList.size
     }
 
+
     override fun instantiateItem(view: ViewGroup, position: Int): Any {
 
+        // populate the pager with data received
         val pagerLayout = inflater.inflate(R.layout.pager_page, view, false)!!
 
         val image = pagerLayout.findViewById(R.id.image) as ImageView

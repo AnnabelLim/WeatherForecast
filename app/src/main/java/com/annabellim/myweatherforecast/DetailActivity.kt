@@ -18,6 +18,7 @@ class DetailActivity : BaseActivity() {
         setContentView(binding.root)
 
         makeFullScreen()
+        //  pull the data from the bundle and put in the UI
         binding.tvLoc.text = intent.getStringExtra("LOCATION")
         binding.tvDate.text = intent.getStringExtra("DATE")
         binding.tvWeather.text = intent.getStringExtra("DESCR")

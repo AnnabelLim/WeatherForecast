@@ -7,7 +7,7 @@ import java.time.ZoneId
 
 object  Utilities {
 
-    // get date
+    // reformat the "long date" received into a readable format
     fun getFormattedDate(l: Long) : String {
         //Log.d(TAG, "getFormattedDate $l")
         //val date = Instant.ofEpochSecond(l).atZone(ZoneId.systemDefault()).toLocalDate()
@@ -17,13 +17,13 @@ object  Utilities {
         return "$month $day, $year"
     }
 
-    // get week
+    // get the week
     fun getWeekDayFromDate(l: Long) : String {
         // Log.d(TAG, "getWeekDayFromDate $l")
         return Instant.ofEpochSecond(l).atZone(ZoneId.systemDefault()).dayOfWeek.toString()
     }
 
-    // get time
+    // get the time in "HH:mm a" format
     fun getHourAndMin(l: Long) : String {
         // Log.d(TAG, "getTime $l")
         val hour =  Instant.ofEpochSecond(l).atZone(ZoneId.systemDefault()).hour

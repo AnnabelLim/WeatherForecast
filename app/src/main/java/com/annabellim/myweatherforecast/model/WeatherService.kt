@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-// This is the structure of the response received from the weather forecast api call
+// This is the weather forecast API call
 interface WeatherService {
     @GET("data/2.5/forecast/daily?")
     fun getWeatherForecast(@Query("lat") lat: String,

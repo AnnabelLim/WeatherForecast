@@ -130,9 +130,12 @@ class MainActivity : BaseActivity() {
      **********************************************/
     private fun getData() {
 
+        // ask view model to get the forecast from database
         val vm = ViewModelProvider(this).get(MainActivityVM::class.java)
         val dao = AppDatabase.getDatabase(applicationContext).forecastDao()
         vm.getData(dao)
+
+        // observe the forecast live data
         vm.forecastData.observe(this, {
             Log.d(TAG, "Getting data from db count is " + it.count())
             if (it != null && it.count() > 0) {
@@ -154,6 +157,7 @@ class MainActivity : BaseActivity() {
                     }
                 }
             }
+            // after we receive the forecast data, pass it to adapter
             binding.pager.adapter = ViewPagerAdapter(this, this.pagerList)
         })
 
@@ -164,8 +168,10 @@ class MainActivity : BaseActivity() {
      **********************************************/
     private fun manageLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            // ask for permission
             requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),  RC_LOCATION_PERMISSION)
         } else {
+            // we got permission so proceed to get location
             getLocation()
         }
     }
@@ -178,6 +184,7 @@ class MainActivity : BaseActivity() {
             if (location != null) {
                 Log.d(TAG, "Location is $location")
                 lifecycleScope.launch(Dispatchers.IO) {
+                    // if we got the location coordinates, use this data to request weather forecast information
                     WeatherDispatch.getWeatherForecastAndPutInDb(location.latitude, location.longitude, AppDatabase.getDatabase(applicationContext))
                 }
                 Log.d(TAG, "pull data from db after server get")
@@ -196,6 +203,7 @@ class MainActivity : BaseActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             RC_LOCATION_PERMISSION  -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED ) {
+                // we are granted permission so proceed to get location
                 getLocation()
             }
             else {

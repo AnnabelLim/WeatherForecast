@@ -188,7 +188,7 @@ class MainActivity : BaseActivity() {
                     WeatherDispatch.getWeatherForecastAndPutInDb(location.latitude, location.longitude, AppDatabase.getDatabase(applicationContext))
                 }
                 Log.d(TAG, "pull data from db after server get")
-                Handler(Looper.getMainLooper()).postDelayed({ getData() }, 500)
+                Handler(Looper.getMainLooper()).postDelayed({ getData() }, 1000)
             } else {
                 Log.d(TAG, "Location is NULL!!")
                 val toast = Toast.makeText(applicationContext,"Cannot obtain location.",Toast.LENGTH_LONG)

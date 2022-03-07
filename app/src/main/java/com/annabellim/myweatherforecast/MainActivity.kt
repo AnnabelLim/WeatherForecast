@@ -39,6 +39,7 @@ class MainActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        binding.progressBar.visibility = View.VISIBLE
         setContentView(binding.root)
         makeFullScreen()
 
@@ -88,6 +89,7 @@ class MainActivity : BaseActivity() {
         // get the data from database
         Log.d(TAG, "Getting data from db from main")
         getData()
+
     }
 
     /**********************************************
@@ -139,6 +141,7 @@ class MainActivity : BaseActivity() {
         vm.forecastData.observe(this, {
             Log.d(TAG, "Getting data from db count is " + it.count())
             if (it != null && it.count() > 0) {
+                binding.progressBar.visibility = View.GONE
                 pagerList.clear()
                 for (fc in it) {
                     when {
